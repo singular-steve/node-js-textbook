@@ -1,0 +1,17 @@
+<html>
+<head></head>
+<body>
+  <h1>data attribute & dataset</h1>
+  <ul>
+    <li data-id="1" data-user-job="programmer">Hi</li>
+    <li data-id="1" data-user-job="designer">Hello</li>
+    <li data-id="1" data-user-job="ceo">Yo</li>
+    <li data-id="1" data-user-job="worker">Good</li>
+  </ul>
+</body>
+</html>
+<script type="text/javascript">
+  console.log(document.querySelector('li').dataset);
+  console.log(document.querySelector('li').dataset.id);
+  console.log(document.querySelector('li').dataset.userJob);
+</script>

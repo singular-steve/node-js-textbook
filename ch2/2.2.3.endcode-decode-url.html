@@ -1,0 +1,20 @@
+<html>
+<head></head>
+<body>encodeURLComponent and decodeURLComponent
+</body>
+</html>
+<script type="text/javascript">
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = () => {
+    if (xhr.status === 200 || xhr.status === 201) {
+      console.log(xhr.responseText);
+    } else {
+      console.error(xhr.responseText);
+    }
+  };
+  xhr.open('GET', 'https://abc.abc/api/search' + encodeURIComponent('검색어')); // 받는쪽에서 : decodeURIComponent(encodeURIComponent('검색어'))
+  xhr.send();
+</script>
+
+
+

@@ -1,0 +1,27 @@
+<html>
+<head></head>
+<body>formData</body>
+</html>
+<script type="text/javascript">
+  let formData = new FormData();
+  formData.append('name', 'hello');
+  formData.append('year', 2000);
+  formData.append('month', 3);
+  formData.append('day', 22);
+  formData.append('item', 'apple');
+  formData.append('item', 'banana');
+
+  console.log(formData.get('name'));
+  console.log(formData.getAll('item'));
+
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = () => {
+    if (xhr.status === 200 || xhr.status === 201) {
+      console.log(xhr.responseText);
+    } else {
+      console.error(xhr.responseText);
+    }
+  };
+  xhr.open('POST', 'https://abc.abc/api/post/information');
+  xhr.send(formData);
+</script>
