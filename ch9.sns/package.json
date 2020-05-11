@@ -1,0 +1,25 @@
+{
+  "name": "ch9.sns",
+  "version": "0.0.1",
+  "description": "sns service by using express",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "author": "raw-coder",
+  "license": "MIT",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "pug": "^2.0.4",
+    "sequelize": "^5.21.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
