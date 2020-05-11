@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
     commenter: req.body.id,
     comment: req.body.comment,
   });
-  Comment.save()
+  comment.save()
     .then(result => {
       return Comment.populate(result, { path: 'commenter' });
     })

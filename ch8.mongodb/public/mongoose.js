@@ -47,7 +47,7 @@ function getComment(id) {
   xhr.onload = () => {
     if (xhr.status === 200) {
       const comments = JSON.parse(xhr.responseText);
-      const tbody = document.querySelector('#comment-lst tbody');
+      const tbody = document.querySelector('#comment-list tbody');
       tbody.innerHTML = '';
       comments.map(comment => {
         let row = document.createElement('tr');
@@ -96,7 +96,7 @@ function getComment(id) {
             }
           };
           xhr.open('DELETE', '/comments/' + comment._id);
-          xhr.send(JSON.stringify({ comment: newComment }));
+          xhr.send();
         });
         
         td = document.createElement('td');
@@ -146,7 +146,7 @@ document.getElementById('user-form').addEventListener('submit', ev => {
 
 document.getElementById('comment-form').addEventListener('submit', ev => {
   ev.preventDefault();
-  const id = ev.target.userId.value;
+  const id = ev.target.userid.value;
   const comment = ev.target.comment.value;
   if (!id) {
     return alert('Input your Id!');

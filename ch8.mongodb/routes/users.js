@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', (req, res, next) => {
   User.find({})
     .then(users => {
-      res.render('mongoose', { users });
+      res.json(users);
     })
     .catch(err => {
       console.error(err);

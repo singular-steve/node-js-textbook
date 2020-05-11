@@ -1,62 +1,1 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    title mongoose server
-    style.
-      table {
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
-      table th, table td {
-        border: 1px solid black;
-      }
-  body
-    div
-      form#user-form
-        fieldset
-          legend User Register
-          div
-            input#username(type='text' placeholder='Name')
-          div
-            input#age(type='number' placeholder='Age')
-          div
-            input#married(type='checkbox')
-            label(for='married') Married
-          button(type='submit') Register
-    br
-    table#user-list
-      thead
-        tr
-          th Id
-          th Name
-          th Age
-          th Married
-      tbody
-        for user in users
-          tr
-            td= user._id
-            td= user.name
-            td= user.age
-            td= user.married ? 'Married' : 'Single'
-    br
-    div
-      form#comment-form
-        fieldset
-          legend Comment Register
-          div
-            input#userid(type='text' placeholder='User Id')
-          div
-            input#comment(type='text' placeholder='Comment')
-          button(type='submit') Register
-    br
-    table#comment-list
-      thead
-        tr
-          th Id
-          th Commenter
-          th Comment
-          th Edit
-          th Delete
-      tbody
-    script(src='./mongoose.js')
+doctype htmlhtml  head    meta(charset="utf-8")    title mongoose server    style.      table {        border: 1px solid black;        border-collapse: collapse;      }      table th, table td {        border: 1px solid black;      }  body    div      form#user-form        fieldset          legend User Register          div            input#username(type="text" placeholder="Name")          div            input#age(type="number" placeholder="Age")          div            input#married(type="checkbox")            label(for="married") Married          button(type="submit") Register    br    table#user-list      thead        tr          th Id          th Name          th Age          th Married      tbody        for user in users          tr            td= user._id            td= user.name            td= user.age            td= user.married ? "Married" : "Single"    br    div      form#comment-form        fieldset          legend Comment Register          div            input#userid(type="text" placeholder="User Id")          div            input#comment(type="text" placeholder="Comment")          button(type="submit") Register    br    table#comment-list      thead        tr          th Id          th Commenter          th Comment          th Edit          th Delete      tbody    script(src="./mongoose.js")

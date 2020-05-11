@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>mongoose server</title>
+  <style>table {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  table th, table td {
+    border: 1px solid black;
+  }</style>
+</head>
+<body>
+<div>
+  <form id="user-form">
+    <fieldset>
+      <legend>User Register</legend>
+      <div><input id="username" type="text" placeholder="Name"></div>
+      <div><input id="age" type="number" placeholder="Age"></div>
+      <div><input id="married" type="checkbox"><label for="married">Married</label></div>
+      <button type="submit">Register</button>
+    </fieldset>
+  </form>
+</div>
+<br>
+<table id="user-list">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Married</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>5eb89581df2a603f1f448471</td>
+    <td>123</td>
+    <td>100</td>
+    <td>Married</td>
+  </tr>
+  <tr>
+    <td>5eb895d2df2a603f1f448472</td>
+    <td>heheh</td>
+    <td>50</td>
+    <td>Married</td>
+  </tr>
+  <tr>
+    <td>5eb92cc765d7b33ffa848b1b</td>
+    <td>Hello</td>
+    <td>88</td>
+    <td>Married</td>
+  </tr>
+  <tr>
+    <td>5eb92d2090be424020ddc715</td>
+    <td>1234</td>
+    <td>55</td>
+    <td>Single</td>
+  </tr>
+  <tr>
+    <td>5eb92fc0d93fd54077672b5d</td>
+    <td>66</td>
+    <td>66</td>
+    <td>Single</td>
+  </tr>
+  <tr>
+    <td>5eb9311bf0a62d40f45b13a4</td>
+    <td>9999</td>
+    <td>9999</td>
+    <td>Married</td>
+  </tr>
+  <tr>
+    <td>5eb93162f0a62d40f45b13a5</td>
+    <td>fdd</td>
+    <td>1</td>
+    <td>Single</td>
+  </tr>
+  <tr>
+    <td>5eb9323fce0a8f413d5067ef</td>
+    <td>22</td>
+    <td>22</td>
+    <td>Single</td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<div>
+  <form id="comment-form">
+    <fieldset>
+      <legend>Comment Register</legend>
+      <div><input id="userid" type="text" placeholder="User Id"></div>
+      <div><input id="comment" type="text" placeholder="Comment"></div>
+      <button type="submit">Register</button>
+    </fieldset>
+  </form>
+</div>
+<br>
+<table id="comment-list">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+<script src="./mongoose.js"></script>
+</body>
+</html>
