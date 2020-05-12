@@ -1,12 +1,12 @@
 const express = require('express');
 
-const router = require.Router();
+const router = express.Router();
 
 router.get('/profile', (req, res) => {
   res.render('profile', { title: 'SNS - your SNS', user: null });
 });
 
-router.get('/', (req, res, next) => {
+router.get('/join', (req, res) => {
   res.render('join', {
     title: 'Join - SNS',
     user: null,
@@ -22,3 +22,5 @@ router.get('/', (req, res, next) => {
     loginError: req.flash('loginError'),
   });
 });
+
+module.exports = router;
