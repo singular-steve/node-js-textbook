@@ -4,7 +4,11 @@ const bcrypt = require('bcrypt');
 const { User } = require('../models');
 
 module.exports = passport => {
+<<<<<<< HEAD
   passports.use(new LocalStrategy({
+=======
+  passport.use(new LocalStrategy({
+>>>>>>> add local login login to sns service by using passport
     usernameField: 'email',
     passwordField: 'password',
   }, async (email, password, done) => {
