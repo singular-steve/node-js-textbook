@@ -1,6 +1,17 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  .timeline
+    form#join-form(action='/auth/join' method='post')
+      .input-group
+        label(for='join-email') e-mail
+        input#join-email(type='email' name='email')
+      .input-group
+        label(for='join-nick') Nick Name
+        input#join-nick(type='text' name='nick')
+      .input-group
+        label(for='join-password') Password
+        input#join-password(type='password' name='password')
+      if joinError
+        .error-message= joinError
+      button#join-btn.btn(type='submit') Join

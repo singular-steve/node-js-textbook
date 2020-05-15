@@ -5,7 +5,7 @@ block content
     if user
       div
         form#twit-form(action='/post' method='post' enctype='multipart/form-data')
-          .input-grout
+          .input-group
             textarea#twit(name='content' maxlength=140)
           .img-preview
             img#img-preview(src='' style='display: none;' width='250' alt='Preview')
@@ -33,7 +33,7 @@ block content
   script.
     if (document.getElementById('img')) {
       document.getElementById('img').addEventListener('change', () => {
-        const formData = new FormData();
+        let formData = new FormData();
         console.log(this, this.files);
         formData.append('img', this.files[0]);
         const xhr = new XMLHttpRequest();
@@ -51,7 +51,7 @@ block content
         xhr.send(formData);
       });
     }
-    [].forEach.call(document.querySelectorAll('.twit-follow'), tag => {
+    document.querySelectorAll('.twit-follow').forEach(tag => {
       tag.addEventListener('click', () => {
         const isLoggedIn = document.querySelector('#my-id');
         if (isLoggedIn) {

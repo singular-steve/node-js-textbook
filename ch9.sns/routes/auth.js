@@ -14,7 +14,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       req.flash('Fail to join', 'Already joined e-mail');
       return res.redirect('/');
     }
-    const hashedPassword = await bcrypt(password, 12);
+    const hashedPassword = await bcrypt.hash(password, 12);
     await User.create({
       email,
       nick,
@@ -31,7 +31,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
   passport.authenticate('local', (authError, user, info) => {
     if (authError) {
       console.error(authError);
-      return res.redirect('/');
+      return next(authError);
     }
     if (!user) {
       req.flash('LoginError', info.message);
@@ -62,4 +62,3 @@ router.get('/kakao/callback', passport.authenticate('kakao', {
 });
 
 module.exports = router;
-
