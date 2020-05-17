@@ -23,7 +23,7 @@ block content
           input.twit-user-id(type='hidden' value=twit.user.id)
           input.twit-id(type='hidden' value=twit.id)
           .twit-author= twit.user.nick
-          -const follow = user && user.Followings.map(f => f.id).includes(twit.user.id);
+          -const follow = user && user.Followings && user.Followings.map(f => f.id).includes(twit.user.id);
           if user && user.id !== twit.user.id && !follow
             button.twit-follow Follow
           .twit-content= twit.content
@@ -32,10 +32,10 @@ block content
               img(src=twit.img alt='Thumbnail')
   script.
     if (document.getElementById('img')) {
-      document.getElementById('img').addEventListener('change', () => {
+      document.getElementById('img').addEventListener('change', ev => {
         let formData = new FormData();
-        console.log(this, this.files);
-        formData.append('img', this.files[0]);
+        console.log(ev, ev.target.files);
+        formData.append('img', ev.target.files[0]);
         const xhr = new XMLHttpRequest();
         xhr.onload = () => {
           if (xhr.status === 200) {
