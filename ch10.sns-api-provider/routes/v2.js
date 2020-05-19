@@ -1,18 +1,16 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 
-const {verifyToken, deprecated} = require('./middlewares');
-const {Domain, User, Post, Hashtag} = require('../models');
+const { verifyToken, apiLimiter } = require('./middlewares');
+const { Domain, User, Post, Hashtag } = require('../models');
 
 const router = express.Router();
 
-router.use(deprecated);
-
-router.post('/token', async (req, res) => {
-  const {clientSecret} = req.body;
+router.post('/token', apiLimiter, async (req, res) => {
+  const { clientSecret } = req.body;
   try {
     const domain = await Domain.findOne({
-      where: {clientSecret},
+      where: { clientSecret },
       include: {
         model: User,
         attribute: ['nick', 'id'],
@@ -21,38 +19,32 @@ router.post('/token', async (req, res) => {
     if (!domain) {
       return res.status(401).json({
         code: 401,
-        message: 'Unregistered Domain',
+        message: 'Domain is not registerd.',
       });
     }
     const token = jwt.sign({
       id: domain.user.id,
       nick: domain.user.nick,
     }, process.env.JWT_SECRET, {
-      expiresIn: '1m',
+      expiresIn: '30m',
       issuer: 'rawcoder',
     });
     return res.json({
       code: 200,
-      message: 'Token Published',
+      message: 'Token is published',
       token,
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
       code: 500,
-      message: 'Server Error',
+      message: 'Internal server error',
     });
   }
 });
 
-router.get('/test', verifyToken, (req, res) => {
-  res.json(req.decoded);
-});
-
-router.get('/posts/my', verifyToken, (req, res) => {
-  Post.findAll({
-    where: {userId: req.decoded.id},
-  })
+router.get('/test', verifyToken, apiLimiter, (req, res) => {
+  Post.findAll({ where: { userId: req.decoded.id }})
     .then(posts => {
       console.log(posts);
       res.json({
@@ -64,34 +56,30 @@ router.get('/posts/my', verifyToken, (req, res) => {
       console.error(error);
       return res.status(500).json({
         code: 500,
-        message: 'Internal Server Error',
+        message: 'Server Error',
       });
     });
 });
 
-router.get('/posts/hashtag/:title', verifyToken, async (req, res) => {
+router.get('/post/hashtag/:title', verifyToken, apiLimiter, async (req, res) => {
   try {
-    const hashtag = await Hashtag.findOne({
-      where: {
-        title: req.params.title,
-      },
-    });
+    const hashtag = await Hashtag.find({ where: { title: req.params.title }});
     if (!hashtag) {
       return res.status(404).json({
         code: 404,
-        message: 'No Hashtags',
+        message: 'No Result',
       });
     }
     const posts = await hashtag.getPosts();
     return res.json({
       code: 200,
-      payloads: posts,
+      payload: posts,
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
       code: 500,
-      message: 'Server Error',
+      message: 'Internal Server Error',
     });
   }
 });
