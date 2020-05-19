@@ -12,7 +12,7 @@ router.post('/token', async (req, res) => {
     const domain = await Domain.findOne({
       where: { clientSecret },
       include: {
-        model: Userm,
+        model: User,
         attribute: ['nick', 'id'],
       },
     });
@@ -32,6 +32,7 @@ router.post('/token', async (req, res) => {
     return res.json({
       code: 200,
       message: 'Token Published',
+      token,
     });
   } catch (error) {
     console.error(error);
