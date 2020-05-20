@@ -1,12 +1,13 @@
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
-const URL = 'http://localhost:8002/v1';
+// const URL = 'http://localhost:8002/v1';
+const URL = 'http://localhost:8002/v2';
 
 router.get('/test', async (req, res, next) => {
   try {
     if (!req.session.jwt) {
-      const tokenResult = await axios.post('http://localhost:8002/v1/token', {
+      const tokenResult = await axios.post(`${URL}/token`, {
         clientSecret: process.env.CLIENT_SECRET,
       });
       if (tokenResult.data && tokenResult.data.code === 200) {
@@ -15,7 +16,7 @@ router.get('/test', async (req, res, next) => {
         return res.json(tokenResult.data);
       }
     }
-    const result = await axios.get('http://localhost:8002/v1/test', {
+    const result = await axios.get(`${URL}/test`, {
       headers: { authorization: req.session.jwt },
     });
     return res.json(result.data);

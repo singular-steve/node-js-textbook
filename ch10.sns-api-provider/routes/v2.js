@@ -44,6 +44,10 @@ router.post('/token', apiLimiter, async (req, res) => {
 });
 
 router.get('/test', verifyToken, apiLimiter, (req, res) => {
+  res.json(req.decoded);
+});
+
+router.get('/posts/my', verifyToken, apiLimiter, (req, res) => {
   Post.findAll({ where: { userId: req.decoded.id }})
     .then(posts => {
       console.log(posts);
@@ -59,7 +63,7 @@ router.get('/test', verifyToken, apiLimiter, (req, res) => {
         message: 'Server Error',
       });
     });
-});
+})
 
 router.get('/post/hashtag/:title', verifyToken, apiLimiter, async (req, res) => {
   try {
