@@ -1,0 +1,16 @@
+doctype
+html
+  head
+    meta(charset='utf-8')
+    title Let's chat
+  body
+    div check console and network
+    script.
+      var webSocket = new WebSocket("ws://localhost:8005");
+      webSocket.onopen = function () {
+        console.log('Connection success');
+      }
+      webSocket.onmessage = function (event) {
+        console.log(event.data);
+        webSocket.send('Sending a replay from client to server');
+      }
