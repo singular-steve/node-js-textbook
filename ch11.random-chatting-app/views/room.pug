@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  fieldset
+    legend Create a Chatting Room
+    form(action='/room' method='post')
+      div: input(name='title' placeholder='Title')
+      div: input(name='max' type='number' placeholder='Number of Persons(Over 2 Persons)' min='2' value='10')
+      div: input(name='password' type='password' placeholder='Password(Public room without password)')
+      div: button(type='submit') Create
