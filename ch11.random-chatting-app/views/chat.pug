@@ -67,7 +67,7 @@ block content
       } else {
         var gif = document.createElement('img');
         gif.src = '/gif/' + data.gif;
-        div.appendChild(chat);
+        div.appendChild(gif);
       }
       div.style.color = data.user;
       document.querySelector('#chat-list').appendChild(div);
@@ -83,8 +83,8 @@ block content
             console.error(xhr.responseText);
           }
         };
-        xhr.open('POST', `/room/#{room_id}/chat`);
+        xhr.open('POST', '/room/#{room._id}/chat');
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({ chat: this.chat.value }));
+        xhr.send(JSON.stringify({chat: this.chat.value}));
       }
     });
