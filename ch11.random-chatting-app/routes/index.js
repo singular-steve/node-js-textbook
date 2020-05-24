@@ -50,6 +50,7 @@ router.get('/room/:id', async (req, res, next) => {
     }
     if (room.password && room.password !== req.query.password) {
       req.flash('roomError', 'Password is wrong!');
+      return res.redirect('/');
     }
     const { rooms } = io.of('/chat').adapter;
     if (rooms && rooms[req.params.id] && room.max <= rooms[req.params.id].length) {
