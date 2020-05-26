@@ -150,6 +150,20 @@ router.post('/good/:id/bid', isLoggedIn, async (req, res, next) => {
     console.error(error);
     return next(error);
   }
+});
+
+router.get('/list', isLoggedIn, async (req, res, next) => {
+  try {
+    const goods = await Good.findAll({
+      where: { soldId: req.user.id },
+      include: { model: Auction },
+      order: [[{ model: Auction }, 'bid', 'DESC']],
+    });
+    res.render('list', { title: 'Successful bid goods - Auction', goods });
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
 })
 
 module.exports = router;

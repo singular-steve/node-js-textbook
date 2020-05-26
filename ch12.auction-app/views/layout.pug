@@ -16,6 +16,7 @@ html
             input#my-id(type='hidden' value=user.id)
             a#logout.btn(href='/auth/logout') Logout
             a#register.btn(href='/good') Register Goods
+            a#list.btn(href='/list') Successful Bid Goods
           else
             form#login-form(action='/auth/login' method='post')
               .input-group
@@ -26,8 +27,8 @@ html
                 input#password(type='password' name='password' required)
               if loginError
                 .error-message= loginError
-              a#join.btn(href='/join') 회원가입
-              button#login.btn(type='submit') 로그인
+              a#join.btn(href='/join') Register
+              button#login.btn(type='submit') Login
         footer
           | Made by&nbsp;
           a(href='https://rawcoder.info' target='_blank') Rawcoder
