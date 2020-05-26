@@ -1,0 +1,35 @@
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='stylesheet' href='/main.css')
+  body
+    .container
+      .profile-wrap
+        .profile
+          if user && user.id
+            .user-name= 'Hi! ' + user.nick + '!'
+            .user-money= 'Money: ₩' + user.money
+            input#my-id(type='hidden' value=user.id)
+            a#logout.btn(href='/auth/logout') Logout
+            a#register.btn(href='/good') Register Goods
+          else
+            form#login-form(action='/auth/login' method='post')
+              .input-group
+                label(for='email') e-mail
+                input#email(type='email' name='email' required autofocus)
+              .input-group
+                label(for='password') Password
+                input#password(type='password' name='password' required)
+              if loginError
+                .error-message= loginError
+              a#join.btn(href='/join') 회원가입
+              button#login.btn(type='submit') 로그인
+        footer
+          | Made by&nbsp;
+          a(href='https://rawcoder.info' target='_blank') Rawcoder
+        block good
+      block content
