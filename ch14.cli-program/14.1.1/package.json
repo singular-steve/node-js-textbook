@@ -1,0 +1,15 @@
+{
+  "name": "14.1.1",
+  "version": "1.0.0",
+  "description": "nodejs cli program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rawcoder",
+  "license": "ISC",
+  "bin": {
+    "cli": "./index.js",
+    "cli2": "./index2.js"
+  }
+}
