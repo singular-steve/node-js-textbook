@@ -6,13 +6,21 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question('Is this fun? (y/n) ', answer => {
+console.clear();
+
+const answerCallback = answer => {
   if (answer === 'y') {
     console.log('Thank you!');
+    rl.close();
   } else if (answer === 'n') {
     console.log('Sorry.');
+    rl.close();
   } else {
-    console.log('y or n');
+    console.clear();
+    console.log('Answer y or n');
+    rl.question('Is this fun? (y/n) ', answerCallback);
   }
-  rl.close();
-});
+};
+
+
+rl.question('Is this fun? (y/n) ', answerCallback);

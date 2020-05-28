@@ -10,6 +10,7 @@
   "license": "ISC",
   "bin": {
     "cli": "./index.js",
-    "cli2": "./index2.js"
+    "cli2": "./index2.js",
+    "mkt": "./template.js"
   }
 }
