@@ -5,8 +5,7 @@ const path = require('path');
 const type = process.argv[2];
 const name = process.argv[3];
 const directory = process.argv[4] || '.';
-const htmlTemplate = `
-<DOCTYPE html>
+const htmlTemplate = `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8"/>
@@ -18,8 +17,7 @@ const htmlTemplate = `
 </body>
 </html>`;
 
-const routerTemplate = `
-const express = require('express');
+const routerTemplate = `const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -29,14 +27,14 @@ router.get('/', (req, res, next) => {
     console.error(error);
     next(error);
   }
-);
+});
 
 module.exports = router;
 `;
 
 const exist = dir => {
   try {
-    fs.accessSync('dir', fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK);
+    fs.accessSync(dir, fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK);
     return true;
   } catch (error) {
     return false;
