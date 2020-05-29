@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
+const readline = require('readline');
 
-const type = process.argv[2];
-const name = process.argv[3];
-const directory = process.argv[4] || '.';
+let rl;
+let type = process.argv[2];
+let name = process.argv[3];
+let directory = process.argv[4] || '.';
+
 const htmlTemplate = `<!DOCTYPE html>
 <html>
 <head>
@@ -73,13 +76,44 @@ const makeTemplate = () => {
       console.log(pathToFile, 'Creating Succeed!!!');
     }
   } else {
-    console.error('select html or express-router!');
+    console.error('Select html or express-router!');
   }
 };
 
+const dirAnswer = answer => {
+  directory = (answer && answer.trim()) || '.';
+  rl.close();
+  makeTemplate();
+}
+
+const nameAnswer = answer => {
+  if (!answer || !answer.trim()) {
+    console.clear();
+    console.log('You have to input the file name!');
+    return rl.question('Input the file name.', nameAnswer);
+  }
+  name = answer;
+  return rl.question('Input the directroy (It will be current folder)', dirAnswer);
+};
+
+const typeAnswer = answer => {
+  if (answer !== 'html' && answer !== 'express-router') {
+    console.clear();
+    console.log('Select html or express-router!');
+    return rl.question('Which type of template do you need? (html or express-router)', typeAnswer);
+  }
+  type = answer;
+  return rl.question('Input the file name.', nameAnswer);
+}
+
 const program = () => {
   if (!type || !name) {
-    console.error('SYNOPSIS\n\t mkt html|express-router file_name [path]');
+    rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    console.clear();
+    rl.question('Which type of template do you need? (html or express-router)', typeAnswer);
   } else {
     makeTemplate();
   }
