@@ -19,3 +19,61 @@
 | 14 | CLI 프로그램 개발 |
 | 15 | AWS와 GCP로 배포 |
 | 16 | 서버리스 노드 개발 |
+
+
+### TIP
+npm audit
+
+자동 취약점 점검
+
+retirejs
+
+문제가 있는 패키지 점검
+```terminal 
+$ npm i -g retire
+$ retire
+```
+
+cross-env
+
+Windows 환경에서 NODE_ENV 설정하여 실행
+```terminal
+$ npm i -g cross-env && npm i cross-env
+```
+
+package.json
+```json 
+  "start": "cross-env NODE_ENV=production PORT=80 node app"
+```
+
+pm2
+
+- 운영환경에서 nodemon 대신 사용
+- 서버가 에러로 종료되었을 때 재실행
+- 멀티 프로세싱 (멀티 스레딩 아님) : 메모리 공유 안됨(세션 등) => memcached, redis 사용
+- 실행, 종료, 모니터링
+
+```terminal
+$ pm2 start app.js
+$ pm2 list
+$ pm2 kill
+$ pm2 monit
+```
+
+- pm2 클러스터링 : -i 뒤의 숫자는 현재 CPU 코어수 개수 대비 생성할 프로세스 갯수
+
+```terminal
+$ pm2 start app.js -i 0
+```
+
+morgan
+
+HTTP request logger
+
+winston
+
+로그를 파일이나 DB에 저장
+
+winston-daily-rotate-file
+
+로그를 날짜별로 관리
