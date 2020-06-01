@@ -77,3 +77,26 @@ winston
 winston-daily-rotate-file
 
 로그를 날짜별로 관리
+
+helmet
+
+- express middleware 로 사용, http 취약점 보완
+
+hpp
+
+- express middleware 로 사용, http parameter pollution 취약점 보완
+
+connect-redis
+
+- 멀티 프로세스 간 세션 공유를 위한 Redis와 express를 연결하는 패키지
+
+redislabs.com
+
+- Redis 호스팅 서비스 
+
+nvm, n
+
+- node 버전 관리 패키지
+
+
+

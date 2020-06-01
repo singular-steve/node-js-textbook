@@ -13,6 +13,16 @@ const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+const helmet = require('helmet');
+const hpp = require('hpp');
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
+let redisClient = redis.createClient({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSWORD,
+  logErrors: true,
+});
 const logger = require('./logger');
 
 const app = express();
@@ -26,6 +36,8 @@ app.set('port', process.env.PORT || 8001);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(morgan('combined'));
+  app.use(helmet());
+  app.use(hpp());
 } else {
   app.use(morgan('dev'));
 }
@@ -45,6 +57,7 @@ const sessionOption = {
     httpOnly: true,
     secure: false,
   },
+  store: new RedisStore({ client: redisClient })
 };
 
 if (process.env.NODE_ENV === 'production') {
